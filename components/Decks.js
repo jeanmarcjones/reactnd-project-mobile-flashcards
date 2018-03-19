@@ -1,44 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native'
-import { getDecks } from '../utils/api'
+import { connect } from 'react-redux'
 import { grey, lightGray, purple, white } from '../utils/colors'
 
-class Decks extends Component {
-  state = {
-    decks: {}
-  }
-  componentDidMount() {
-    getDecks()
-      .then((res) => {
-        this.setState({ decks: res })
-      })
-  }
-  render() {
-    const { decks } = this.state
-    const { navigate } = this.props.navigation
+function Decks({ decks, navigation }) {
+  return (
+    <ScrollView contentContainerStyle={styles.list}>
+      {Object.keys(decks).map((key) => {
+        const { title, questions } = decks[key]
 
-    return (
-        <ScrollView contentContainerStyle={styles.list}>
-          {Object.keys(decks).map((key) => {
-            const { title, questions } = decks[key]
-
-            return (
-              <TouchableOpacity key={key}
-                                style={styles.deck}
-                                onPress={() => navigate(
-                                  'Deck',
-                                  { deck: decks[key] }
-                                )}>
-                <View>
-                  <Text style={styles.deckTitle}>{title}</Text>
-                  <Text style={styles.deckCards}>{questions.length} Cards</Text>
-                </View>
-              </TouchableOpacity>
-            )
-          })}
-        </ScrollView>
-    )
-  }
+        return (
+          <TouchableOpacity key={key}
+                            style={styles.deck}
+                            onPress={() => navigation.navigate(
+                              'Deck',
+                              { deck: decks[key] }
+                            )}>
+            <View>
+              <Text style={styles.deckTitle}>{title}</Text>
+              <Text style={styles.deckCards}>{questions.length} Cards</Text>
+            </View>
+          </TouchableOpacity>
+        )
+      })}
+    </ScrollView>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -77,4 +63,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Decks
+const mapStateToProps = (state) => ({
+  decks: state.decks,
+})
+
+export default connect(
+  mapStateToProps
+)(Decks)

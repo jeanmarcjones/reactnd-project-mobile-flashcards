@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import { KeyboardAvoidingView, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation'
-import { addCardToDeck, getDeck } from '../utils/api'
+import { connect } from 'react-redux'
+import { createCard } from '../actions'
 import { black, grey, lightGreen, white } from '../utils/colors'
+
+const resetAction = NavigationActions.reset({
+  index: 0,
+  actions: [NavigationActions.navigate({ routeName: 'Home' })],
+});
 
 class AddCard extends Component {
   state = {
@@ -12,18 +18,14 @@ class AddCard extends Component {
   static navigationOptions = () => ({
     title: 'Add Card',
   })
-  submit = (title, card) => {
-    addCardToDeck(title, card)
-      .then(() => {
-        getDeck(title)
-          .then((res) => {
-            this.setState({ [title]: res })
-            this.back()
-          })
-      })
+  submit = (deck, card) => {
+    const { createCard } = this.props
+
+    createCard({ deck, card })
+    this.home()
   }
-  back = () => {
-    this.props.navigation.dispatch(NavigationActions.back());
+  home = () => {
+    this.props.navigation.dispatch(resetAction);
   }
   render() {
     const { question, answer } = this.state
@@ -65,7 +67,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: white,
-
   },
   input: {
     width: '80%',
@@ -94,4 +95,11 @@ const styles = StyleSheet.create({
   },
 })
 
-export default AddCard
+const mapDispatchToProps = (dispatch) => ({
+  createCard: (data) => dispatch(createCard(data))
+})
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(AddCard)
