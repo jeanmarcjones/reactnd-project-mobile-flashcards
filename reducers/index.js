@@ -21,7 +21,13 @@ export default function decks (state = initialState, action) {
     case ADD_DECK :
       return {
         ...state,
-        ...action.deck
+        decks: {
+          ...state.decks,
+          [action.deck]: {
+            title: action.title,
+            questions: [],
+          },
+        }
       }
     case ADD_CARD :
       const { deck, card } = action

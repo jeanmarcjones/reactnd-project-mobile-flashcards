@@ -12,10 +12,11 @@ export const receiveDecks = ({ decks }) => {
   }
 }
 
-export const addDeck = ({ deck }) => {
+export const addDeck = ({ deck, title }) => {
   return {
     type: ADD_DECK,
     deck,
+    title,
   }
 }
 
@@ -32,6 +33,14 @@ export const fetchDecks = () => (dispatch) => {
     .getDecks()
     .then((res) => {
       dispatch(receiveDecks({ decks: res }))
+    })
+}
+
+export const createDeck = ({ deck }) => (dispatch) => {
+  DecksAPI
+    .saveDeckTitle(deck)
+    .then((res) => {
+      dispatch(addDeck({ deck: deckIndex(res), title: res }))
     })
 }
 

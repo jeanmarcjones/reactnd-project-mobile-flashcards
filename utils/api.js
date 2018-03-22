@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native'
+import { deckIndex } from '../utils/helpers'
 
 export const DECK_STORAGE_KEY = 'FlashCards:deck'
 
@@ -25,8 +26,17 @@ export function getDeck(deck) {
 }
 
 // take in a single title argument and add it to the decks.
-export function saveDeckTitle(deck) {
-  return AsyncStorage.setItem(DECK_STORAGE_KEY, deck)
+export function saveDeckTitle(title) {
+  return AsyncStorage.getItem(DECK_STORAGE_KEY)
+    .then((res) => {
+      let data = JSON.parse(res)
+      data = {
+        ...data,
+        [deckIndex(title)]: { title: title, questions: [] }
+      }
+      AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data))
+      return title
+    })
 }
 
 // take in two arguments, title and card, and will add the card to the list of questions for the deck with the
