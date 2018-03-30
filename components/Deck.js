@@ -20,14 +20,16 @@ function Deck({ deck, navigation }) {
           )}>
           <Text style={styles.buttonText}>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: '#000' }]}
-          onPress={() => navigation.navigate(
-            'Quiz',
-            { index: deckIndex(deck.title) }
-          )}>
-          <Text style={[styles.buttonText, { color: white }]}>Start Quiz</Text>
-        </TouchableOpacity>
+        {(deck.questions.length > 0 &&
+          <TouchableOpacity
+            style={[styles.button, { backgroundColor: '#000' }]}
+            onPress={() => navigation.navigate(
+              'Quiz',
+              { index: deckIndex(deck.title) }
+            )}>
+            <Text style={[styles.buttonText, { color: white }]}>Start Quiz</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
     : <Text>Loading</Text>
