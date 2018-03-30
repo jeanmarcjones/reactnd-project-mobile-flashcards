@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { deckIndex } from '../utils/helpers'
 import { black, grey, lightGray, white } from '../utils/colors'
-import AddCard from "./AddCard";
 
 class Deck extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -27,7 +26,12 @@ class Deck extends Component {
             )}>
             <Text style={styles.buttonText}>Add Card</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, { backgroundColor: '#000' }]}>
+          <TouchableOpacity
+            style={[styles.button, { backgroundColor: '#000' }]}
+            onPress={() => navigate(
+              'Quiz',
+              { index: deckIndex(title) }
+            )}>
             <Text style={[styles.buttonText, { color: white }]}>Start Quiz</Text>
           </TouchableOpacity>
         </View>

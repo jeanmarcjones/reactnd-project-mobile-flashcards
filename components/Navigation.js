@@ -5,11 +5,12 @@ import { connect } from 'react-redux'
 import { Constants } from 'expo'
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons'
 import { white, purple, lightPurple } from '../utils/colors'
-import { fetchDecks, receiveDecks } from '../actions'
+import { fetchDecks } from '../actions'
 import Decks from '../components/Decks'
 import Deck from '../components/Deck'
 import NewDeck from '../components/NewDeck'
 import AddCard from '../components/AddCard'
+import Quiz from '../components/Quiz'
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -64,6 +65,9 @@ const MainNavigation = StackNavigator({
   AddCard: {
     screen: AddCard,
   },
+  Quiz: {
+    screen: Quiz,
+  },
 }, {
   headerMode: 'screen',
   navigationOptions: {
@@ -76,7 +80,7 @@ const MainNavigation = StackNavigator({
 })
 
 class Navigation extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { fetchDecks } = this.props
     fetchDecks()
   }
