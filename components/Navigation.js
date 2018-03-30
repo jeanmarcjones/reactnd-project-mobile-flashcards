@@ -4,7 +4,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 import { Constants } from 'expo'
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons'
-import { white, purple, lightPurple } from '../utils/colors'
+import { white, purple, lightPurple, lightGreen } from '../utils/colors'
 import { fetchDecks } from '../actions'
 import Decks from '../components/Decks'
 import Deck from '../components/Deck'
@@ -51,6 +51,9 @@ const Tabs = TabNavigator({
       },
       shadowRadius: 6,
       shadowOpacity: 1,
+    },
+    indicatorStyle: {
+      backgroundColor: lightGreen,
     },
   },
 })
