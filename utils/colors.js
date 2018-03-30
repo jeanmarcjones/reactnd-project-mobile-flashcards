@@ -8,4 +8,4 @@ export const purple = '#4a148c'
 export const lightPurple = '#5C2B97'
 export const green = '#148c4a'
 export const lightGreen = '#2b975c'
-
+export const red = '#972b30'
