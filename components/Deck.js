@@ -1,41 +1,37 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { deckIndex } from '../utils/helpers'
 import { black, grey, lightGray, white } from '../utils/colors'
 
-class Deck extends Component {
-  render() {
-    const { deck, navigation } = this.props
-
-    return (deck
-      ? <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>{deck.title}</Text>
-          <Text style={styles.cards}>{deck.questions.length} Cards</Text>
-        </View>
-        <View style={styles.footer}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate(
-              'AddCard',
-              { index: deckIndex(deck.title) }
-            )}>
-            <Text style={styles.buttonText}>Add Card</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button, { backgroundColor: '#000' }]}
-            onPress={() => navigation.navigate(
-              'Quiz',
-              { index: deckIndex(deck.title) }
-            )}>
-            <Text style={[styles.buttonText, { color: white }]}>Start Quiz</Text>
-          </TouchableOpacity>
-        </View>
+function Deck({ deck, navigation }) {
+  return (deck
+    ? <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>{deck.title}</Text>
+        <Text style={styles.cards}>{deck.questions.length} Cards</Text>
       </View>
-      : <Text>Loading</Text>
-    )
-  }
+      <View style={styles.footer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(
+            'AddCard',
+            { index: deckIndex(deck.title) }
+          )}>
+          <Text style={styles.buttonText}>Add Card</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: '#000' }]}
+          onPress={() => navigation.navigate(
+            'Quiz',
+            { index: deckIndex(deck.title) }
+          )}>
+          <Text style={[styles.buttonText, { color: white }]}>Start Quiz</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+    : <Text>Loading</Text>
+  )
 }
 
 const styles = StyleSheet.create({
