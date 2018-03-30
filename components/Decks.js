@@ -10,12 +10,13 @@ function Decks({ decks, navigation }) {
         const { title, questions } = decks[key]
 
         return (
-          <TouchableOpacity key={key}
-                            style={styles.deck}
-                            onPress={() => navigation.navigate(
-                              'Deck',
-                              { deck: decks[key] }
-                            )}>
+          <TouchableOpacity
+            key={key}
+            style={styles.deck}
+            onPress={() => navigation.navigate(
+              'Deck',
+              { deck: decks[key] }
+            )}>
             <View>
               <Text style={styles.deckTitle}>{title}</Text>
               <Text style={styles.deckCards}>{questions.length} Cards</Text>
