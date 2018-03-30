@@ -15,7 +15,7 @@ function Decks({ decks, navigation }) {
             style={styles.deck}
             onPress={() => navigation.navigate(
               'Deck',
-              { deck: decks[key] }
+              { index: key }
             )}>
             <View>
               <Text style={styles.deckTitle}>{title}</Text>

@@ -1,28 +1,29 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 import { deckIndex } from '../utils/helpers'
 import { black, grey, lightGray, white } from '../utils/colors'
 
 class Deck extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.deck.title
+  static navigationOptions = () => ({
+    title: 'Deck',
   })
   render() {
     const { navigate } = this.props.navigation
-    const { title, questions } = this.props.navigation.state.params.deck
+    const { deck } = this.props
 
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.cards}>{questions.length} Cards</Text>
+          <Text style={styles.title}>{deck.title}</Text>
+          <Text style={styles.cards}>{deck.questions.length} Cards</Text>
         </View>
         <View style={styles.footer}>
           <TouchableOpacity
             style={styles.button}
             onPress={() => navigate(
               'AddCard',
-              { index: deckIndex(title) }
+              { index: deckIndex(deck.title) }
             )}>
             <Text style={styles.buttonText}>Add Card</Text>
           </TouchableOpacity>
@@ -30,7 +31,7 @@ class Deck extends Component {
             style={[styles.button, { backgroundColor: '#000' }]}
             onPress={() => navigate(
               'Quiz',
-              { index: deckIndex(title) }
+              { index: deckIndex(deck.title) }
             )}>
             <Text style={[styles.buttonText, { color: white }]}>Start Quiz</Text>
           </TouchableOpacity>
@@ -85,4 +86,10 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Deck
+const mapStateToProps = (state, ownProps) => ({
+  deck: state.decks[ownProps.navigation.state.params.index],
+})
+
+export default connect(
+  mapStateToProps,
+)(Deck)

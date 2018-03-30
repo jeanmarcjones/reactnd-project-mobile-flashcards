@@ -44,7 +44,7 @@ class Quiz extends Component {
           style={[styles.button, { backgroundColor: white, borderColor: black, borderWidth: 1 }]}
           onPress={() => navigation.navigate(
             'Deck',
-            { deck: deck }
+            { index: deckIndex(deck.title) }
           )}>
           <Text style={[styles.buttonText, { color: black }]}>Back to Deck</Text>
         </TouchableOpacity>
