@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Platform, View, StatusBar } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -102,7 +102,7 @@ class Navigation extends Component {
         <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
         <MainNavigation />
       </View>
-    );
+    )
   }
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { red, lightGreen, white, grey, black } from '../utils/colors'
-import { deckIndex } from "../utils/helpers";
+import { deckIndex, setLocalNotification, clearLocalNotification } from '../utils/helpers'
 
 class Quiz extends Component {
   state = {
@@ -21,12 +21,22 @@ class Quiz extends Component {
       score: prevState.score + 1,
       viewQuestion: true,
     }))
+
+    this.updateNotifications()
   }
   incorrect = () => {
     this.setState((prevState) => ({
       currentQuestion: prevState.currentQuestion + 1,
       viewQuestion: true,
     }))
+
+    this.updateNotifications()
+  }
+  updateNotifications = () => {
+    if ( this.state.currentQuestion + 1 === this.props.deck.questions.length ) {
+      clearLocalNotification()
+        .then(setLocalNotification)
+    }
   }
   render() {
     const { currentQuestion, viewQuestion, score } = this.state
