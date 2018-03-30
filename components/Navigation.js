@@ -61,12 +61,21 @@ const MainNavigation = StackNavigator({
   },
   Deck: {
     screen: Deck,
+    navigationOptions: () => ({
+      title: 'Deck',
+    }),
   },
   AddCard: {
     screen: AddCard,
+    navigationOptions: () => ({
+      title: 'Add Card',
+    }),
   },
   Quiz: {
     screen: Quiz,
+    navigationOptions: () => ({
+      title: 'Quiz',
+    }),
   },
 }, {
   headerMode: 'screen',

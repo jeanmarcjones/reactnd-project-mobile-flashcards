@@ -10,9 +10,6 @@ class Quiz extends Component {
     currentQuestion: 0,
     score: 0,
   }
-  static navigationOptions = () => ({
-    title: 'Quiz',
-  })
   changeView = () => {
     this.setState((prevState) => ({
       viewQuestion: !prevState.viewQuestion

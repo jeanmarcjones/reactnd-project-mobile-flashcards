@@ -5,9 +5,6 @@ import { deckIndex } from '../utils/helpers'
 import { black, grey, lightGray, white } from '../utils/colors'
 
 class Deck extends Component {
-  static navigationOptions = () => ({
-    title: 'Deck',
-  })
   render() {
     const { deck, navigation } = this.props
 

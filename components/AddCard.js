@@ -15,9 +15,6 @@ class AddCard extends Component {
     question: '',
     answer: '',
   }
-  static navigationOptions = () => ({
-    title: 'Add Card',
-  })
   submit = (deck, card) => {
     const { createCard } = this.props
 
