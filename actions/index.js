@@ -48,6 +48,6 @@ export const createCard = ({ deck, card }) => (dispatch) => {
   DecksAPI
     .addCardToDeck(deck, card)
     .then((res) => {
-      dispatch(addCard({ deck: deckIndex(res.title), card: res.questions }))
+      dispatch(addCard({ deck: deckIndex(res.title), card: res.card }))
     })
 }

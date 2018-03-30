@@ -1,14 +1,8 @@
 import React, { Component } from 'react'
 import { KeyboardAvoidingView, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native'
-import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 import { createCard } from '../actions'
 import { black, grey, lightGreen, white } from '../utils/colors'
-
-const resetAction = NavigationActions.reset({
-  index: 0,
-  actions: [NavigationActions.navigate({ routeName: 'Home' })],
-});
 
 class AddCard extends Component {
   state = {
@@ -16,13 +10,13 @@ class AddCard extends Component {
     answer: '',
   }
   submit = (deck, card) => {
-    const { createCard } = this.props
+    const { createCard, navigation } = this.props
 
     createCard({ deck, card })
-    this.home()
-  }
-  home = () => {
-    this.props.navigation.dispatch(resetAction);
+    navigation.navigate(
+      'Deck',
+      { index: deck },
+    )
   }
   render() {
     const { question, answer } = this.state
