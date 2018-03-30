@@ -1,27 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { KeyboardAvoidingView, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native'
-import { NavigationActions } from 'react-navigation'
 import { createDeck } from '../actions'
 import { black, grey, lightGreen, white } from '../utils/colors'
-
-const resetAction = NavigationActions.reset({
-  index: 0,
-  actions: [NavigationActions.navigate({ routeName: 'Home' })],
-});
+import { deckIndex } from '../utils/helpers'
 
 class NewDeck extends Component {
   state = {
     title: '',
   }
   submit = (title) => {
-    const { createDeck } = this.props
+    const { createDeck, navigation } = this.props
 
     createDeck({ deck: title })
-    this.home()
-  }
-  home = () => {
-    this.props.navigation.dispatch(resetAction);
+    navigation.navigate(
+      'Deck',
+      { index: deckIndex(title) },
+    )
   }
   render() {
     const { title } = this.state

@@ -9,11 +9,10 @@ class Deck extends Component {
     title: 'Deck',
   })
   render() {
-    const { navigate } = this.props.navigation
-    const { deck } = this.props
+    const { deck, navigation } = this.props
 
-    return (
-      <View style={styles.container}>
+    return (deck
+      ? <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>{deck.title}</Text>
           <Text style={styles.cards}>{deck.questions.length} Cards</Text>
@@ -21,7 +20,7 @@ class Deck extends Component {
         <View style={styles.footer}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigate(
+            onPress={() => navigation.navigate(
               'AddCard',
               { index: deckIndex(deck.title) }
             )}>
@@ -29,7 +28,7 @@ class Deck extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, { backgroundColor: '#000' }]}
-            onPress={() => navigate(
+            onPress={() => navigation.navigate(
               'Quiz',
               { index: deckIndex(deck.title) }
             )}>
@@ -37,6 +36,7 @@ class Deck extends Component {
           </TouchableOpacity>
         </View>
       </View>
+      : <Text>Loading</Text>
     )
   }
 }
