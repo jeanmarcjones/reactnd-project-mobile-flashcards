@@ -13,7 +13,7 @@ The app is currently unavailable. Expo SDK v25.0.0 is no longer supported.
 
 ### TODO
 
-[ ] Upgrade to new version of the expo SDK
+- [ ] Upgrade to new version of the expo SDK
 
 ### Getting started
 
