@@ -16,10 +16,6 @@ This has been tested on the platforms:
 
 * iOS emulator
 
-## Create React Native App
+### Licence
 
-This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app). You can find more information on how to perform common tasks [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
-
-## Contributing
-
-This repository is Jean-Marc Jones personal project. Therefore, pull requests will not be accepted.
+This project is licensed under the Unlicense license.
