@@ -7,7 +7,15 @@ notification prompting them to do so.
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app)
 .
 
-## TL;DR
+### Tested Platforms
+
+The app is currently unavailable. Expo SDK v25.0.0 is no longer supported.
+
+### TODO
+
+[ ] Upgrade to new version of the expo SDK
+
+### Getting started
 
 To run the app you must:
 
